@@ -1,0 +1,64 @@
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+    <title>Confirmación de Registro</title>
+    
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,700;1,900&display=swap" rel="stylesheet">
+
+  </head>
+  <body style="width: 100%; height: auto; background: #F1F1F1; padding: 0; margin: 0; font-family: 'Roboto', sans-serif;">
+    <div class="mailing-cont" style="width: 100%; max-width: 1280px; padding: 0; margin: 0 auto; background: white; text-align: left;">
+
+      <img src="https://superligaclaro.com/mailing/mailing_animated.gif" alt="" style="max-width: 1280px; width: 100%; height: auto;">
+
+      <h3 style="padding: 5%; margin: 0px;">
+        <p style="font-weight: normal; text-align: justify;">
+          Gracias por registrar a tu equipo en Super Liga Claro, a continuación <br>
+          se detallan los datos brindados en el formulario de inscripción: <br><br>
+        </p>
+        <p style="font-weight: normal; text-align: justify;">
+          Nombre completo: {{ name }} <br>
+          Identificación: {{ dui_dpi }} <br>
+          Teléfono: {{ phone }} <br>
+          {% if mobile %}
+          Teléfono móvil: {{ mobile }} <br>
+          {% endif %}
+          Departamento: {{ department }} <br>
+          Ciudad: {{ city }} <br>
+          {% if address %}
+          Dirección: {{ address }} <br>
+          {% endif %}
+          {% if licenseNumber %}
+          Número de licencia: {{ licenseNumber }} <br>
+          {% endif %}
+          {% if policeRecords %}
+          Antecedentes policiales: {{ policeRecords }} <br>
+          {% endif %}
+          {% if isVaccinated %}
+          ¿Está vacunado?: {{ isVaccinated }} <br>
+          {% endif %}
+          {% if vaccineBrand %}
+          Marca de vacuna: {{ vaccineBrand }} <br>
+          {% endif %}
+          {% if vaccineDose %}
+          Dósis de vacuna: {{ vaccineDose }} <br>
+          {% endif %}
+          <br>
+        </p>
+        <p style="font-weight: normal; text-align: justify;">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse finibus laoreet <br>
+            scelerisque. Vestibulum sagittis hendrerit massa, non vehicula dolor porta placerat. <br>
+            Praesent euismod mollis aliquet. Ut mauris ligula, consectetur quis accumsan tincidunt, <br><br>
+        </p>
+      </h3>
+    </div>
+    <div style="background-color: #d52b1e; max-width: 1280px; min-height: 6vh; margin: 0 auto; width: 100%; text-align: center; position: relative; bottom: 0; color: white; font-weight: bold; padding: 2vh 0;">
+      &copy; Claro 2022. Todos los derechos reservados.
+    </div>
+
+  </body>
+</html>

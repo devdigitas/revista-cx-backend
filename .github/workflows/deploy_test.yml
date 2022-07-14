@@ -1,0 +1,37 @@
+on:
+  push:
+    branches:
+      - 'dev'
+
+name: 🚀 Deploy project on test server
+jobs:
+  web-deploy:
+    name: 🎉 Deploy
+    runs-on: ubuntu-latest
+    steps:
+    - name: 🚚 Get latest code
+      uses: actions/checkout@v2
+    
+    - name: 📂 Sync files
+      uses: SamKirkland/FTP-Deploy-Action@4.2.0
+      with:
+        server: host8.registrar-servers.com
+        username: ${{ secrets.ftp_username_test }}
+        password: ${{ secrets.ftp_password_test }}
+        server-dir: './public_html/superliga/server/'
+
+    - name: Setup django server
+      uses: matheusvanzan/sshpass-action@v2
+      with:
+        host: host8.registrar-servers.com
+        user: ${{ secrets.ssh_username_test }}
+        pass: ${{ secrets.ssh_password_test }}
+        port: 21098
+        run: |
+          source /home/digihtzk/virtualenv/public_html/superliga/server/3.8/bin/activate && cd /home/digihtzk/public_html/superliga/server
+          /bin/cp .env.dev .env
+          pip install --upgrade pip
+          pip install -r requirements
+          python manage.py migrate
+          python manage.py collectstatic --no-input
+          /bin/touch ./tmp/restart.txt

@@ -1,0 +1,37 @@
+on:
+  push:
+    branches:
+      - main
+
+name: 🚀 Deploy project on server
+jobs:
+  web-deploy:
+    name: 🎉 Deploy
+    runs-on: ubuntu-latest
+    steps:
+    - name: 🚚 Get latest code
+      uses: actions/checkout@v2
+    
+    - name: 📂 Sync files
+      uses: SamKirkland/FTP-Deploy-Action@4.2.0
+      with:
+        server: host8.registrar-servers.com
+        username: ${{ secrets.ftp_username }}
+        password: ${{ secrets.ftp_password }}
+        server-dir: './public_html/superligaclaro.com/server/'
+
+    - name: Setup django server
+      uses: matheusvanzan/sshpass-action@v2
+      with:
+        host: host8.registrar-servers.com
+        user: ${{ secrets.ssh_username }}
+        pass: ${{ secrets.ssh_password }}
+        port: 21098
+        run: |
+          source /home/claroregion/virtualenv/public_html/superligaclaro.com/server/3.8/bin/activate && cd /home/claroregion/public_html/superligaclaro.com/server
+          /bin/cp .env.prod .env
+          pip install --upgrade pip
+          pip install -r requirements
+          python manage.py migrate
+          python manage.py collectstatic --no-input
+          /bin/touch ./tmp/restart.txt
