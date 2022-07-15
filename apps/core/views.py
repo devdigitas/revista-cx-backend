@@ -4,11 +4,11 @@ from apps.core.models import *
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 
 
-class SettingViewSet(ModelViewSet):
+class PageSettingViewSet(ModelViewSet):
 
-    queryset = Setting.objects.all()
+    queryset = PageSetting.objects.all()
     permission_classes = [IsAuthenticatedOrReadOnly]
-    serializer_class = SettingSerializer
+    serializer_class = PageSettingSerializer
 
 
 class PageViewSet(ModelViewSet):

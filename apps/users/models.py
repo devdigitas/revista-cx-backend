@@ -33,7 +33,7 @@ class CustomAccountManager(BaseUserManager):
 
 class User(AbstractBaseUser, PermissionsMixin):
 
-    username = None
+    username = models.CharField(max_length=20, blank=True)
     start_date = None
     date_joined = None
 

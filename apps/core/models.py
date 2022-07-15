@@ -1,8 +1,8 @@
 from django.db import models
-from django.contrib.auth import get_user_model
+# from django.contrib.auth import get_user_model
 
 
-class Setting(models.Model):
+class PageSetting(models.Model):
 
     redirect_url = models.URLField(null=True)
     isActive = models.BooleanField(default=True)

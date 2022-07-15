@@ -3,10 +3,10 @@ from rest_framework import serializers
 from apps.core.models import *
 
 
-class SettingSerializer(serializers.ModelSerializer):
+class PageSettingSerializer(serializers.ModelSerializer):
     
     class Meta:
-        model = Setting
+        model = PageSetting
         fields = '__all__'
         depth = 1
         extra_kwargs = {
