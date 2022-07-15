@@ -3,6 +3,17 @@ from rest_framework import serializers
 from apps.core.models import *
 
 
+class SettingSerializer(serializers.ModelSerializer):
+    
+    class Meta:
+        model = Setting
+        fields = '__all__'
+        depth = 1
+        extra_kwargs = {
+            'id': { 'read_only': True }
+        }
+
+
 class PageSerializer(serializers.ModelSerializer):
     
     class Meta:

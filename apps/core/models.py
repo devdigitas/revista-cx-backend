@@ -2,6 +2,14 @@ from django.db import models
 from django.contrib.auth import get_user_model
 
 
+class Setting(models.Model):
+
+    redirect_url = models.URLField(null=True)
+    isActive = models.BooleanField(default=True)
+    createdAt = models.DateTimeField(auto_now_add=True)
+    updatedAt = models.DateTimeField(auto_now=True)
+
+
 class Page(models.Model):
 
     name = models.CharField(max_length=50)
