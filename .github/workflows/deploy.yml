@@ -18,7 +18,7 @@ jobs:
         server: host8.registrar-servers.com
         username: ${{ secrets.ftp_username }}
         password: ${{ secrets.ftp_password }}
-        server-dir: './public_html/revista-cx/server'
+        server-dir: './public_html/revista-cx/server/'
 
     - name: Setup django server
       uses: matheusvanzan/sshpass-action@v2
